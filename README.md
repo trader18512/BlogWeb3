@@ -84,7 +84,7 @@ In a separate terminal in the `BlogWeb3` directory:
 
 ./deploy-local-backend-canister.sh
 
-dfx deploy dfinity_js_frontend
+dfx deploy frontend
 ```
 
 If you are building an HTTP-based canister and would like your canister to autoreload on file changes (DO NOT deploy to mainnet with autoreload enabled):
