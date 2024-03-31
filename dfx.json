@@ -1,0 +1,66 @@
+{
+    "canisters": {
+        "internet_identity": {
+            "type": "custom",
+            "shrink": false,
+            "candid": "https://github.com/dfinity/internet-identity/releases/download/release-2023-09-08/internet_identity.did",
+            "wasm": "https://github.com/dfinity/internet-identity/releases/download/release-2023-09-08/internet_identity_dev.wasm.gz"
+          },
+          "ledger_canister": {
+            "type": "custom",
+            "candid": "https://raw.githubusercontent.com/dfinity/ic/d87954601e4b22972899e9957e800406a0a6b929/rs/rosetta-api/icp_ledger/ledger.did",
+            "wasm": "https://download.dfinity.systems/ic/d87954601e4b22972899e9957e800406a0a6b929/canisters/ledger-canister.wasm.gz",
+            "remote": {
+              "id": {
+                "ic": "ryjl3-tyaaa-aaaaa-aaaba-cai"
+              }
+            }
+          },
+          "icrc1_ledger_canister": {
+            "type": "custom",
+            "candid": "https://raw.githubusercontent.com/dfinity/ic/d87954601e4b22972899e9957e800406a0a6b929/rs/rosetta-api/icrc1/ledger/ledger.did",
+            "wasm": "https://download.dfinity.systems/ic/d87954601e4b22972899e9957e800406a0a6b929/canisters/ic-icrc1-ledger.wasm.gz"
+          },
+        "backend": {
+            "type": "custom",
+            "main": "src/backend/index.ts",
+            "candid": "src/backend/index.did",
+            "candid_gen": "http",
+            "build": "npx azle backend",
+            "wasm": ".azle/backend/backend.wasm",
+            "gzip": true,
+            "metadata": [
+                {
+                    "name": "candid:service",
+                    "path": "src/backend/index.did"
+                },
+                {
+                    "name": "cdk:name",
+                    "content": "azle"
+                }
+            ]
+        },
+        "frontend": {
+            "dependencies": [
+                "backend"
+              ],
+              "frontend": {
+                "entrypoint": "src/frontend/src/index.html"
+              },
+              "source": [
+                "src/frontend/src/assets",
+                "dist/frontend/"
+              ],
+              "type": "assets",
+              "gzip": true
+            }
+        },
+        "defaults": {
+          "build": {
+            "args": "",
+            "packtool": ""
+          }
+        },
+        "output_env_file": ".env",
+        "version": 1
+}
