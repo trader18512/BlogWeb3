@@ -32,16 +32,20 @@ export async function login() {
 
     if (!isAuthenticated) {
         console.log('Attempting to log in...'); 
-        await authClient?.login({
-            identityProvider: IDENTITY_PROVIDER,
-            onSuccess: async () => {
-                console.log('Login successful, reloading page...'); 
-            },
-            maxTimeToLive: MAX_TTL,
-        });
+
+        try {
+            await authClient?.login({
+                identityProvider: IDENTITY_PROVIDER,
+                onSuccess: async () => {
+                    console.log('Login successful, reloading page...'); 
+                },
+                maxTimeToLive: MAX_TTL,
+            });
+        } catch (err) {
+            console.error('An error occurred during login:', err);
+        }
     }
 }
-
 
 export async function logout() {
     const authClient = await getAuthClient();

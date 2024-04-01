@@ -233,7 +233,7 @@ async function tipBlogger(to: string, amount: bigint): Promise<Result<any, strin
             },
             body: JSON.stringify({
                 // The path to your DApp's Candid interface description
-                candidPath: "/path/to/your_dapp_candid.did",
+                candidPath: "/src/backend/index.did",
                 args: [{
                     // Optional values can remain as empty arrays if not used
                     tipper_subaccount: [],

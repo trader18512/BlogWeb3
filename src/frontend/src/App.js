@@ -33,11 +33,16 @@ const App = function AppWrapper() {
         setPrincipal(principal);
     }, []);
 
-    useEffect(async () => {
-        const principal = await getPrincipalText();
-        const account = await getAddressFromPrincipal(principal);
-        setAddress(account.account);
-    }, []);
+    useEffect(() => {
+      const fetchData = async () => {
+          const principal = await getPrincipalText();
+          const account = await getAddressFromPrincipal(principal);
+          setAddress(account.account);
+      };
+  
+      fetchData();
+  }, [setAddress]);
+  
 
     useEffect(() => {
         getICPBalance();
@@ -56,7 +61,7 @@ const App = function AppWrapper() {
       <>
           <Notification />
           <Container fluid="md">
-              {/* <Nav className="justify-content-end pt-3 pb-5">
+              <Nav className="justify-content-end pt-3 pb-5">
                   {authenticated ? (
                       <Nav.Item>
                           <Wallet
@@ -70,7 +75,7 @@ const App = function AppWrapper() {
                   ) : (
                       <Cover name="My Blog" login={login} coverImg={coverImg} />
                   )}
-              </Nav> */}
+              </Nav>
               <main>
                   <BlogPosts blogPosts={blogPosts} />
                   <Cover coverImg={coverImg} />
